@@ -1,0 +1,53 @@
+body{
+margin: 0%;
+padding: 0%;
+color:white
+}
+
+.container{
+
+    height:50px;
+    background-color: black;
+    display: flex;
+   
+    /* flex-direction: row;
+    flex-wrap: wrap; */
+   justify-content:space-between;
+    gap:0px;
+    /* align-content: baseline; */
+
+}
+
+.c1,.c2,.c3,.c4,.c5,.c6{
+
+    height: 48px;
+    border:1px solid rgb(220, 14, 14);
+    display: inline-block;
+
+}
+.c1{
+    width:400px;
+    color: aliceblue;
+    padding-left: 0%;
+}
+.c2{
+    width:400px;
+
+}
+
+.c3{
+
+    width:600px;
+    /* background-color: aliceblue; */
+
+}
+
+.c4{
+    width:300px;
+}
+.c5{
+    width:400px;
+}
+.c6{
+    width:400px;
+}
