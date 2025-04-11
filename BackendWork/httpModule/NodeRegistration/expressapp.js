@@ -22,7 +22,7 @@ app.post("/login",(req,res)=>{
     let arr=[];
     const {name,email,password}=req.body
     console.log(name+"  "+email+" "+password)
-res.status(200).json({message:"Hit the post data/api"})
+res.status(200).json({message:"Successfully logged in"})
 })
 
 app.post("/register",async (req,res)=>{
