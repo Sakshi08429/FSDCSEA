@@ -43,8 +43,64 @@ app.post("/register",async (req,res)=>{
    }
 })
 
+app.get("/admin/show",async(req,res)=>{
+    try{
+
+    }
+    catch(error){
+        console.log(error.message);
+    }
+})
 
 
+app.get("/admin/showByEmail/:email",async(req,res)=>{
+const emailid=req.params.email;
+let arr=[];
+// console.log(emailid);
+// res.json({message:"Get the data by email id"})
+
+const data=await fs.readFile('student.json',{encoding:'utf-8'})
+arr=JSON.parse(data);
+const status=arr.find(ele=>ele.email==emailid);
+console.log(status)
+if(!status){
+    res.json({message:"Email not registered"});
+}
+res.json({message:status})
+})
+
+
+app.delete("/admin/deleteByEmail/:email",async(req,res)=>{
+    const emailid=req.params.email;
+    let arr=[];
+    const data=await fs.readFile('student.json',{encoding:'utf-8'});
+    arr=JSON.parse(data);
+    const status=arr.find(ele=>ele.email==emailid);
+    if(!status){
+        res.json({message:"Email not registered"});
+    }
+    const newarr=arr.filter(ele=>ele.email!=emailid);   
+    await fs.writeFile('student.json',JSON.stringify(newarr,null,2));
+    res.json({message:"Deleted successfully"});
+})
+
+
+app.patch("/admin/updateByEmail/:email",async(req,res)=>{
+    const emailid=req.params.email;
+    const{name,password}=req.body;
+    let arr=[];
+    const data=await fs.readFile('student.json',{encoding:'utf-8'});
+    arr=JSON.parse(data);
+    const status=arr.find(ele=>ele.email==emailid);
+    if(!status){
+        res.json({message:"Email not registered"});
+    }
+    status.name=name;
+    status.password=password;
+    await fs.writeFile('student.json',JSON.stringify(arr,null,2));
+    res.json({message:"Updated successfully"});
+
+})
 app.delete("/data",(req,res)=>{
     res.status(200).json({message:"Delete the post data/api"})
 })
